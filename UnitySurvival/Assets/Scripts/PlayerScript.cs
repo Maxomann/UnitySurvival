@@ -11,7 +11,7 @@ public class PlayerScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+		//GetComponent<Rigidbody2D> ().simulated = false;
     }
 
     // Update is called once per frame
