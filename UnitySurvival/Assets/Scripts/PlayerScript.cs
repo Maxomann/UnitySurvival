@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerScript : MonoBehaviour
 {
 
     public float speed = 0f;
@@ -17,21 +17,23 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movex = 0;
-        movey = 0;
-
         if (Input.GetKey(KeyCode.A))
             movex = -1;
         else if (Input.GetKey(KeyCode.D))
             movex = 1;
-        else if (Input.GetKey(KeyCode.W))
+        else
+            movex = 0;
+
+        if (Input.GetKey(KeyCode.W))
             movey = 1;
         else if (Input.GetKey(KeyCode.S))
             movey = -1;
+        else
+            movey = 0;
     }
 
     void FixedUpdate()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(movex * speed, movey * speed);
+        GetComponent<Rigidbody2D>().velocity = new Vector2( movex * speed, movey * speed );
     }
 }
