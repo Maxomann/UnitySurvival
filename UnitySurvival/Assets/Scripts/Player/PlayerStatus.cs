@@ -54,10 +54,20 @@ public class PlayerStatus : MonoBehaviour
         hunger += (float)HUNGER_GAIN_PER_TIME * Time.deltaTime;
         thirst += (float)THIRST_GAIN_PER_TIME * Time.deltaTime;
 
+        checkValueLimits();
+    }
+
+    void checkValueLimits()
+    {
         if (hunger > HUNGER_MAX)
             die();
-        if (thirst > HUNGER_MAX)
+        if (thirst > THIRST_MAX)
             die();
+
+        if (hunger < HUNGER_MIN)
+            hunger = HUNGER_MIN;
+        if (thirst < THIRST_MIN)
+            thirst = THIRST_MIN;
     }
 
     private void die()
@@ -70,4 +80,24 @@ public class PlayerStatus : MonoBehaviour
         init_values();
     }
 
+    public void eat(ref FoodObject food)
+    {
+        hunger -= food.HUNGER_VALUE;
+        thirst -= food.THIRST_VALUE;
+
+        checkValueLimits();
+
+        Destroy(food);
+
+        Debug.Log("Eat");
+        Debug.Log(hunger);
+        Debug.Log(thirst);
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        FoodObject obj = coll.gameObject.GetComponent<FoodObject>();
+        if (obj != null)
+            eat(ref obj);
+    }
 }
