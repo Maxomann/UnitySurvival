@@ -19,6 +19,7 @@ public class PlayerStatus : MonoBehaviour
 
     public float HUNGER_GAIN_PER_TIME;
     public float THIRST_GAIN_PER_TIME;
+    public float TIREDNESS_GAIN_PER_TIME;
 
     float health;
     float hunger;
@@ -53,6 +54,7 @@ public class PlayerStatus : MonoBehaviour
     {
         hunger += (float)HUNGER_GAIN_PER_TIME * Time.deltaTime;
         thirst += (float)THIRST_GAIN_PER_TIME * Time.deltaTime;
+        tiredness += (float)TIREDNESS_GAIN_PER_TIME * Time.deltaTime;
 
         checkValueLimits();
     }
@@ -63,16 +65,26 @@ public class PlayerStatus : MonoBehaviour
             die();
         if (thirst > THIRST_MAX)
             die();
+        if (tiredness > TIREDNESS_MAX)
+            die();
 
         if (hunger < HUNGER_MIN)
             hunger = HUNGER_MIN;
         if (thirst < THIRST_MIN)
             thirst = THIRST_MIN;
+        if (tiredness < TIREDNESS_MIN)
+            tiredness = TEMPERATURE_MIN;
     }
 
     private void die()
     {
         alive = false;
+
+        Debug.Log("!DEAD!");
+        Debug.Log(hunger);
+        Debug.Log(thirst);
+        Debug.Log(tiredness);
+        Debug.Log(temperature);
     }
 
     public void respawn()
@@ -94,11 +106,24 @@ public class PlayerStatus : MonoBehaviour
         Debug.Log(thirst);
     }
 
+    public void sleep(GameObject obj, SleepObject tent)
+    {
+        tiredness -= tent.TIREDNESS_VALUE;
+
+        checkValueLimits();
+
+        Debug.Log("Sleep");
+        Debug.Log(tiredness);
+    }
+
     void OnCollisionEnter2D(Collision2D coll)
     {
         GameObject obj = coll.gameObject;
         FoodObject food = obj.GetComponent<FoodObject>();
+        SleepObject tent = obj.GetComponent<SleepObject>();
         if (food != null)
             eat(obj, food);
+        if (tent != null)
+            sleep(obj, tent);
     }
 }
