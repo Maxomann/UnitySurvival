@@ -80,14 +80,14 @@ public class PlayerStatus : MonoBehaviour
         init_values();
     }
 
-    public void eat(ref FoodObject food)
+    public void eat(GameObject obj, FoodObject food)
     {
         hunger -= food.HUNGER_VALUE;
         thirst -= food.THIRST_VALUE;
 
         checkValueLimits();
 
-        Destroy(food);
+        Destroy(obj);
 
         Debug.Log("Eat");
         Debug.Log(hunger);
@@ -96,8 +96,9 @@ public class PlayerStatus : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        FoodObject obj = coll.gameObject.GetComponent<FoodObject>();
-        if (obj != null)
-            eat(ref obj);
+        GameObject obj = coll.gameObject;
+        FoodObject food = obj.GetComponent<FoodObject>();
+        if (food != null)
+            eat(obj, food);
     }
 }
