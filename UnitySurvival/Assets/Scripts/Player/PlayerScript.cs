@@ -11,7 +11,7 @@ public class PlayerScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		//GetComponent<Rigidbody2D> ().simulated = false;
+        GetComponent<AudioSource>().Play();
     }
 
     // Update is called once per frame
@@ -30,10 +30,18 @@ public class PlayerScript : MonoBehaviour
             movey = -1;
         else
             movey = 0;
+
+        if (movex != 0 || movey != 0)
+        {
+            if (!GetComponent<AudioSource>().isPlaying)
+                GetComponent<AudioSource>().Play();
+        }
+        else
+                GetComponent<AudioSource>().Stop();
     }
 
     void FixedUpdate()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2( movex * speed, movey * speed );
+        GetComponent<Rigidbody2D>().velocity = new Vector2(movex * speed, movey * speed);
     }
 }

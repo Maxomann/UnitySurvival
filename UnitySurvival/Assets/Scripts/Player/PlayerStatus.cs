@@ -5,27 +5,20 @@ public class PlayerStatus : MonoBehaviour
 {
     private Vector3 startPosition;
 
-    public uint HEALTH_MAX;
-    public uint HEALTH_MIN;
     public uint HUNGER_MAX;
     public uint HUNGER_MIN;
     public uint THIRST_MAX;
     public uint THIRST_MIN;
     public uint TIREDNESS_MAX;
     public uint TIREDNESS_MIN;
-    public int TEMPERATURE_MIN;
-    public int TEMPERATURE_MAX;
-    public int TEMPERATURE_NORMAL;
 
     public float HUNGER_GAIN_PER_TIME;
     public float THIRST_GAIN_PER_TIME;
     public float TIREDNESS_GAIN_PER_TIME;
 
-    float health;
     float hunger;
     float thirst;
     float tiredness;
-    float temperature;
 
     bool alive;
 
@@ -33,11 +26,9 @@ public class PlayerStatus : MonoBehaviour
     {
         GetComponent<Transform>().position = startPosition;
 
-        health = HEALTH_MAX;
         hunger = HUNGER_MIN;
         thirst = THIRST_MIN;
         tiredness = TIREDNESS_MIN;
-        temperature = TEMPERATURE_NORMAL;
 
         alive = true;
     }
@@ -73,7 +64,7 @@ public class PlayerStatus : MonoBehaviour
         if (thirst < THIRST_MIN)
             thirst = THIRST_MIN;
         if (tiredness < TIREDNESS_MIN)
-            tiredness = TEMPERATURE_MIN;
+            tiredness = TIREDNESS_MIN;
     }
 
     private void die()
@@ -84,7 +75,6 @@ public class PlayerStatus : MonoBehaviour
         Debug.Log(hunger);
         Debug.Log(thirst);
         Debug.Log(tiredness);
-        Debug.Log(temperature);
     }
 
     public void respawn()
@@ -94,6 +84,7 @@ public class PlayerStatus : MonoBehaviour
 
     public void eat(GameObject obj, FoodObject food)
     {
+        food.onEat();
         hunger -= food.HUNGER_VALUE;
         thirst -= food.THIRST_VALUE;
 

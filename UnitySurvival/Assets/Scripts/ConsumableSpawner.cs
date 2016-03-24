@@ -10,7 +10,7 @@ public class ConsumableSpawner : MonoBehaviour
     GameObject spawnedObject = null;
     Transform thisTransform;
 
-    public int SPAWN_IN_ONE_OF_HOW_MANY;
+    public int SPAWN_IN_ONE_OF_HOW_MANY;//spawn in one of x checks
 
     void spawnObject()
     {
