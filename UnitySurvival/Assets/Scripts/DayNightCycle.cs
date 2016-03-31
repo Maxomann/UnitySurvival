@@ -14,10 +14,10 @@ public class DayNightCycle : MonoBehaviour
     public static float transitionSpeedDelay { get; private set; }
 
     //Variables for the Editor Inspector window
-    public float _transitionSpeed = 0.01f;                                  // How fast to move through the Linear interpolation (Lerp)
-    public float _transitionSpeedDelay = 0.05f;                             // How many seconds to wait before Lerping further
-    public int _totalDayLength = 40;                                                             // How many seconds are in the whole day cycle
-    public int[] _timeList = new int[] { 8, 16, 24, 32 };             // When to trigger the color switches
+    public float _transitionSpeed = 0.01f;                                                                      // How fast to move through the Linear interpolation (Lerp)
+    public float _transitionSpeedDelay = 0.05f;                                                                 // How many seconds to wait before Lerping further
+    public int _totalDayLength = 40;                                                                            // How many seconds are in the whole cycle
+    public int[] _timeList = new int[] { 1, 2, 3, 4 };                                                          // When to trigger the color switches
     public Color[] _colorList = new Color[] { Color.red, Color.cyan, Color.magenta, Color.yellow, Color.blue }; // What color to become
                                                                                                                 // Since the first color is a default color, the color list has to be one size larger than the timelist
                                                                                                                 
@@ -86,8 +86,8 @@ public class DayNightCycle : MonoBehaviour
         Color oldColor = RenderSettings.ambientLight; // The current color
         for (float t = 0; t < 1 + DayNightCycle.transitionSpeed; t += DayNightCycle.transitionSpeed)
         { // We need to add one extra step
-            RenderSettings.ambientLight = Color.Lerp(oldColor, newColor, t); // Lerp the ambient light towards the new color
-            yield return new WaitForSeconds(DayNightCycle.transitionSpeedDelay); // Wait for the assigned number of seconds
+            RenderSettings.ambientLight = Color.Lerp(oldColor, newColor, t); // Lerp the ambient light to the new color
+            yield return new WaitForSeconds(DayNightCycle.transitionSpeedDelay); // Wait for the assigned amount of seconds
         }
        
     }
