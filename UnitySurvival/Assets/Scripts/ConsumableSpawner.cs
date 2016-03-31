@@ -14,7 +14,7 @@ public class ConsumableSpawner : MonoBehaviour
 
     void spawnObject()
     {
-        int randomNumber = Random.Range(0, 2);
+        int randomNumber = Random.Range(0, 3);
 
         GameObject obj = null;
 
