@@ -20,7 +20,7 @@ public class DayNightCycle : MonoBehaviour
     public int[] _timeList = new int[] { 1, 2, 3, 4 };                                                          // When to trigger the color switches
     public Color[] _colorList = new Color[] { Color.red, Color.cyan, Color.magenta, Color.yellow, Color.blue }; // What color to become
                                                                                                                 // Since the first color is a default color, the color list has to be one size larger than the timelist
-                                                                                                                
+
 
     void Start()
     {
@@ -82,13 +82,13 @@ public class DayNightCycle : MonoBehaviour
 
     IEnumerator CLerp(Color newColor)
     {
-       
+
         Color oldColor = RenderSettings.ambientLight; // The current color
         for (float t = 0; t < 1 + DayNightCycle.transitionSpeed; t += DayNightCycle.transitionSpeed)
         { // We need to add one extra step
             RenderSettings.ambientLight = Color.Lerp(oldColor, newColor, t); // Lerp the ambient light to the new color
             yield return new WaitForSeconds(DayNightCycle.transitionSpeedDelay); // Wait for the assigned amount of seconds
         }
-       
+
     }
 }
