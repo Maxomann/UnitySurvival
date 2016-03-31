@@ -124,4 +124,19 @@ public class PlayerStatus : MonoBehaviour
         if (tent != null)
             sleep(obj, tent);
     }
+
+    public float getThirst()
+    {
+        return thirst;
+    }
+
+    public float getTiredness()
+    {
+        return tiredness;
+    }
+
+    public float getHunger()
+    {
+        return hunger;
+    }
 }
