@@ -26,12 +26,12 @@ public class UISystem : MonoBehaviour
     public Button minimapButton;
 
     //The position of the UI menu elements.
-    private Vector3 posEnterMenuButton = new Vector3(150f, 850f, 0f);
-    private Vector3 posRespawnButton = new Vector3(950f, 465f, 0f);
-    private Vector3 posQuitButton = new Vector3(950f, 415f, 0f);
-    private Vector3 posResumeButton = new Vector3(950f, 515f, 0f);
-    private Vector3 posMinimapButton = new Vector3(950f, 365f, 0f);
-    private Vector3 posMenuBackground = new Vector3(907f, 450f, 0f);
+    private Vector3 posEnterMenuButton = new Vector3(100f, 700f, 0f);
+    private Vector3 posRespawnButton = new Vector3(640f, 385f, 0f);
+    private Vector3 posQuitButton = new Vector3(640f, 335f, 0f);
+    private Vector3 posResumeButton = new Vector3(640f, 435f, 0f);
+    private Vector3 posMinimapButton = new Vector3(640f, 285f, 0f);
+    private Vector3 posMenuBackground = new Vector3(657f, 450f, 0f);
 
 
     //The position of the player's UI elements.

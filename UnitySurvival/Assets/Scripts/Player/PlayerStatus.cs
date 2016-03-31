@@ -75,6 +75,7 @@ public class PlayerStatus : MonoBehaviour
         Debug.Log(hunger);
         Debug.Log(thirst);
         Debug.Log(tiredness);
+        Application.Quit();
     }
 
     public void respawn()
