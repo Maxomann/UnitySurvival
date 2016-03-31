@@ -80,8 +80,8 @@ public class PlayerStatus : MonoBehaviour
     public void respawn()
     {
         init_values();
-    }
 
+    }
     public void eat(GameObject obj, FoodObject food)
     {
         food.onEat();
@@ -116,5 +116,26 @@ public class PlayerStatus : MonoBehaviour
             eat(obj, food);
         if (tent != null)
             sleep(obj, tent);
+    }
+
+    public float getHunger()
+    {
+        float tempHunger;
+        tempHunger = hunger;
+        return tempHunger;
+    }
+
+    public float getThirst()
+    {
+        float tempThirst;
+        tempThirst = thirst;
+        return tempThirst;
+    }
+
+    public float getTiredness()
+    {
+        float tempTiredness;
+        tempTiredness = tiredness;
+        return tempTiredness;
     }
 }
