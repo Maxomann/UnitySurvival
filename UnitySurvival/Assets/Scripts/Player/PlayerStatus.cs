@@ -90,11 +90,18 @@ public class PlayerStatus : MonoBehaviour
 
         checkValueLimits();
 
-        Destroy(obj);
+        StartCoroutine(DestroyObjectAfterTime(1, obj));
 
         Debug.Log("Eat");
         Debug.Log(hunger);
         Debug.Log(thirst);
+    }
+
+    IEnumerator DestroyObjectAfterTime(float time, GameObject obj)
+    {
+        yield return new WaitForSeconds(time);
+
+        Destroy(obj);
     }
 
     public void sleep(GameObject obj, SleepObject tent)
